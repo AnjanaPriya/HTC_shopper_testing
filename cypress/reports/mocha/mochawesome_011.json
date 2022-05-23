@@ -1,0 +1,127 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 1,
+    "pending": 1,
+    "failures": 0,
+    "start": "2022-05-23T06:05:08.462Z",
+    "end": "2022-05-23T06:05:42.218Z",
+    "duration": 33756,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 50,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "e6167cf1-6166-4aac-842e-6e1972cbae3b",
+      "title": "",
+      "fullFile": "cypress/integration/9.Add_to_Cart.js",
+      "file": "cypress/integration/9.Add_to_Cart.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "44dbbe98-ec4b-4f46-96d3-0c1b28ef798e",
+          "title": "Add item to cart",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Adding an item to the cart",
+              "fullTitle": "Add item to cart Adding an item to the cart",
+              "timedOut": null,
+              "duration": 30387,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(url + '/collections/all');\n/*\ncy.get(selectors.wishlist_modal).eq(0).click({force:true})\ncy.get(\"body\").then($body => {\n if ($body.find(selectors.list).length < 1) {\n     cy.get(selectors.close).click()\n     cy.add_to_wishlist(11)  \n }\n});\n*/\ncy.get(_selectors.default.getProduct).eq(13).click();\ncy.get(_selectors.default.wishlist).click();\ncy.get(_selectors.default.add_to_wishlist).click();\ncy.wait(2000); //Add to cart\ncy.get(_selectors.default.wishlist_modal).eq(0).click({\n  force: true\n});\ncy.wait(1000);\ncy.get(_selectors.default.list).eq(0).click();\ncy.get(_selectors.default.product_in_list).eq(0).click();\ncy.wait(2000);\ncy.get('.swym-wishlist-product-detail-container .swym-wishlist-product-detail-text-container-inner > h3').then(tit => {\n  let title = tit.text();\n  cy.get('.swym-wishlist-product-detail-container .swym-wishlist-product-detail-text-container-inner .swym-product-final-price').then(q => {\n    let quantity = q.text();\n    cy.get(_selectors.default.add_to_cart).eq(0).click();\n    cy.wait(2000);\n    cy.log('title', title);\n    cy.log('quantity', quantity);\n    cy.get(_selectors.default.close).click();\n    cy.get('.header-bar__module .cart-page-link').eq(0).click();\n    cy.get('.wrapper.main-content >div #CartSection');\n    cy.get('.grid__item.two-thirds > a').eq(0).contains(title);\n    cy.wait(5000);\n    cy.get('.cart__row .grid__item:nth-child(2) > div input[type=\"number\"]').should('have.value', '1');\n  });\n}); //cy.get('.swym-modal-content .swym-close-btn > a').click()\n//cy.go('back')",
+              "err": {},
+              "uuid": "d9f2d513-240d-46e6-92b5-af0e471b3895",
+              "parentUUID": "44dbbe98-ec4b-4f46-96d3-0c1b28ef798e",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Adding all item to the cart",
+              "fullTitle": "Add item to cart Adding all item to the cart",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "be45f93c-b27d-4865-bb62-073490ba9c91",
+              "parentUUID": "44dbbe98-ec4b-4f46-96d3-0c1b28ef798e",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "d9f2d513-240d-46e6-92b5-af0e471b3895"
+          ],
+          "failures": [],
+          "pending": [
+            "be45f93c-b27d-4865-bb62-073490ba9c91"
+          ],
+          "skipped": [],
+          "duration": 30387,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mocha",
+        "quite": true,
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

@@ -1,0 +1,850 @@
+{
+  "stats": {
+    "suites": 12,
+    "tests": 17,
+    "passes": 13,
+    "pending": 2,
+    "failures": 2,
+    "start": "2022-05-23T05:56:07.892Z",
+    "end": "2022-05-23T06:05:42.218Z",
+    "duration": 412784,
+    "testsRegistered": 17,
+    "passPercent": 76.47058823529412,
+    "pendingPercent": 11.764705882352942,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "f3e6ba15-4038-4372-a583-13907a85e48f",
+      "title": "",
+      "fullFile": "cypress/integration/1.Add_To_Wishlist.js",
+      "file": "cypress/integration/1.Add_To_Wishlist.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "ded45ce9-4b4d-4c45-a0ec-7b685dda0655",
+          "title": "Adding to Wishlist",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Checking if wishlist launch point is there",
+              "fullTitle": "Adding to Wishlist Checking if wishlist launch point is there",
+              "timedOut": null,
+              "duration": 7647,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.wait(3000);\ncy.get(_selectors.default.wishlist_modal).eq(0).should('be.visible');",
+              "err": {},
+              "uuid": "80a8b3df-5676-4452-93ba-add2d7cbf63d",
+              "parentUUID": "ded45ce9-4b4d-4c45-a0ec-7b685dda0655",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Add to single wishlist",
+              "fullTitle": "Adding to Wishlist Add to single wishlist",
+              "timedOut": null,
+              "duration": 19555,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//Going to the collections page\ncy.visit(url + '/collections/all');\ncy.get('.grid .grid__item > div > div >div:nth-child(3) .grid-link__title').eq(0).invoke('text').then(text => {\n  // Product details page of a specific product\n  cy.get(_selectors.default.getProduct).eq(0).click();\n  cy.wait(4000); //Clicking on the wishlist button in the PDP\n  cy.get(_selectors.default.wishlist).click();\n  cy.get(_selectors.default.add_to_wishlist).click();\n  cy.wait(3000); //Opening the Wishlist Modal\n  cy.get(_selectors.default.wishlist_modal).eq(0).click({\n    force: true\n  }); //Opening the \"My Wishlist\"(default) list.\n  cy.get(_selectors.default.my_wishlist).contains('My Wishlist').click({\n    force: true\n  });\n  cy.wait(3000);\n  cy.get(_selectors.default.title).should('have.text', text); // Closing the Wishlist Modal\n  cy.get(_selectors.default.close).click();\n  cy.go('back');\n});",
+              "err": {},
+              "uuid": "b2de92ff-7831-4163-8e72-8d3472d4fcf0",
+              "parentUUID": "ded45ce9-4b4d-4c45-a0ec-7b685dda0655",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Creating new List and using the existing list",
+              "fullTitle": "Adding to Wishlist Creating new List and using the existing list",
+              "timedOut": null,
+              "duration": 24464,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//Going to collections page\ncy.visit(url + '/collections/all'); //Creating new list and adding\nconst name = \"New trends\";\ncy.get('.grid .grid__item > div > div >div:nth-child(3) .grid-link__title').eq(1).invoke('text').then(text => {\n  // Product details page of a specific product\n  cy.get(_selectors.default.getProduct).eq(1).click();\n  cy.get(_selectors.default.wishlist).click();\n  cy.get(_selectors.default.new_list).clear().type(name).type('{enter}');\n  cy.get(_selectors.default.add_to_wishlist).click();\n  cy.wait(2000);\n  cy.get(_selectors.default.wishlist_modal).eq(0).click({\n    force: true\n  });\n  cy.get(_selectors.default.list_name).should('have.text', name).click();\n  cy.get(_selectors.default.close).click();\n  cy.go('back');\n}); //Adding to the Existing list\ncy.get('.grid .grid__item > div > div >div:nth-child(3) .grid-link__title').eq(2).invoke('text').then(text => {\n  cy.get(_selectors.default.getProduct).eq(2).click();\n  cy.get(_selectors.default.wishlist).click();\n  cy.wait(2000);\n  cy.get('.swym-wishlist-options .swym-wishlist-select-dropdown .swym-display-list').click();\n  cy.wait(2000);\n  cy.get('.swym-wishlist-dropdown-content-container > div .swym-results-container > button').eq(0).click();\n  cy.get(_selectors.default.add_to_wishlist).click();\n  cy.wait(2000); //Clicking on the wishlist modal\n  cy.get(_selectors.default.wishlist_modal).eq(0).click({\n    force: true\n  });\n  cy.get(_selectors.default.my_wishlist).contains(name).click();\n  cy.wait(3000);\n  cy.get(_selectors.default.title).contains(text); //Closing the list modal\n  cy.get(_selectors.default.close).click();\n  cy.go('back');\n});",
+              "err": {},
+              "uuid": "6430f502-8a04-46ca-b7bf-a4342e4fe1f4",
+              "parentUUID": "ded45ce9-4b4d-4c45-a0ec-7b685dda0655",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Add to existing label and create new label",
+              "fullTitle": "Adding to Wishlist Add to existing label and create new label",
+              "timedOut": null,
+              "duration": 25224,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//Collections Page\ncy.visit(url + '/collections/all'); //Adding to the existing label\ncy.get('.grid .grid__item > div > div >div:nth-child(3) .grid-link__title').eq(3).invoke('text').then(text => {\n  cy.get(_selectors.default.getProduct).eq(3).click();\n  cy.wait(2000);\n  cy.get(_selectors.default.wishlist).click();\n  cy.wait(2000);\n  cy.get('.swym-modal-content .swym-add-wishlist-container .swym-wishlist-options .swym-option-label').click();\n  cy.get('.swym-results-container > button:nth-child(1)').click();\n  cy.get(_selectors.default.add_to_wishlist).click();\n  cy.wait(2000);\n  cy.get(_selectors.default.wishlist_modal).eq(0).click({\n    force: true\n  });\n  cy.get(_selectors.default.my_wishlist).contains('My Wishlist').click();\n  cy.get(_selectors.default.label_name).contains('Label 1');\n  cy.get(_selectors.default.title).should('have.text', text);\n}); // closing the list modal\ncy.get(_selectors.default.close).click();\ncy.go('back'); //Creating a new label\ncy.visit(url + '/collections/all');\nlet label = 'Fan';\ncy.get('.grid .grid__item > div > div >div:nth-child(3) .grid-link__title').eq(4).invoke('text').then(text => {\n  cy.get(_selectors.default.getProduct).eq(4).click();\n  cy.wait(2000);\n  cy.get(_selectors.default.wishlist).click();\n  cy.wait(2000);\n  cy.get('.swym-modal-content .swym-add-wishlist-container .swym-wishlist-options .swym-option-label').click();\n  cy.get('.swym-label-input-container > input').type(label);\n  cy.get('.swym-new-label-container > button').click(); // Clicking on the wishlist button\n  cy.get(_selectors.default.add_to_wishlist).click();\n  cy.wait(2000);\n  cy.get(_selectors.default.wishlist_modal).eq(0).click({\n    force: true\n  });\n  cy.get(_selectors.default.my_wishlist).contains('My Wishlist').click();\n  cy.get('.swym-group-by-label .swym-group-by-label-name').contains(label);\n  cy.get(_selectors.default.title).eq(0).should('have.text', text);\n}); // closing the list modal\ncy.get(_selectors.default.close).click();\ncy.go('back');",
+              "err": {},
+              "uuid": "ea6c9ae3-2184-462c-b595-e15e25250c74",
+              "parentUUID": "ded45ce9-4b4d-4c45-a0ec-7b685dda0655",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "80a8b3df-5676-4452-93ba-add2d7cbf63d",
+            "b2de92ff-7831-4163-8e72-8d3472d4fcf0",
+            "6430f502-8a04-46ca-b7bf-a4342e4fe1f4",
+            "ea6c9ae3-2184-462c-b595-e15e25250c74"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 76890,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "9a1ca7de-c635-490c-8973-359f83129b79",
+      "title": "",
+      "fullFile": "cypress/integration/10.Comments.js",
+      "file": "cypress/integration/10.Comments.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "34c7b2cf-0062-485c-8b11-c6434f3b40e5",
+          "title": "Comments",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Comment on a list and product ",
+              "fullTitle": "Comments Comment on a list and product ",
+              "timedOut": null,
+              "duration": 32695,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "//Collections Page\ncy.visit(url + '/collections/all');\n/*\ncy.get(selectors.wishlist_modal).eq(0).click({force:true})\ncy.get(\"body\").then($body => {\n    if ($body.find(selectors.list).length < 1) {\n        cy.get(selectors.close).click()\n        cy.add_to_wishlist(7)  \n    }\n});\n*/\ncy.get(_selectors.default.getProduct).eq(8).click();\ncy.get(_selectors.default.wishlist).click();\ncy.get(_selectors.default.add_to_wishlist).click();\ncy.wait(2000); //Opening the wishlist modal\ncy.get(_selectors.default.wishlist_modal).eq(0).click({\n  force: true\n});\ncy.wait(2000);\ncy.get(_selectors.default.list).eq(0).click();\ncy.wait(3000);\ncy.get('.swym-comments-preview .swym-add-comment-container .swym-add-comment > textarea').click({\n  force: true\n});\ncy.wait(5000); //Commenting on the list\ncy.get('.swym-add-comment-container .swym-add-comment > textarea').eq(1).type('New model of this product?');\ncy.get('.swym-comments-content .swym-add-comment-container .swym-add-comment > button').click({\n  force: true\n});\ncy.get('.swym-modal-content .swym-close-btn.swym-nav').click();\ncy.get('.swym-comment-item .swym-comment-details .swym-comment-text').should('have.text', 'New model of this product?');\ncy.get(_selectors.default.close).click();\ncy.go('back'); //Commenting on the product\ncy.wait(2000);\ncy.get(_selectors.default.wishlist_modal).eq(0).click({\n  force: true\n});\ncy.get(_selectors.default.list).eq(0).click();\ncy.get(_selectors.default.product_in_list).eq(0).click();\ncy.get('.swym-comments-preview .swym-add-comment-container .swym-add-comment > textarea').click({\n  force: true\n});\ncy.get('.swym-add-comment-container .swym-add-comment > textarea').eq(1).type('New Model of this?');\ncy.get('.swym-comments-content .swym-add-comment-container .swym-add-comment > button').click({\n  force: true\n});\ncy.get('.swym-modal-content .swym-close-btn.swym-nav').click();\ncy.get('.swym-comment-item .swym-comment-details .swym-comment-text').should('have.text', 'New Model of this?'); //Closing the wishlist modal\ncy.get(_selectors.default.close).click();\ncy.go('back');",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.swym-comments-preview .swym-add-comment-container .swym-add-comment > textarea`, but never found it.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find element: `.swym-comments-preview .swym-add-comment-container .swym-add-comment > textarea`, but never found it.\n    at Context.eval (https://htc-demo-store.myshopify.com/__cypress/tests?p=cypress/integration/10.Comments.js:172:8)",
+                "diff": null
+              },
+              "uuid": "d694392a-b673-4267-8925-3e4197fd2dbc",
+              "parentUUID": "34c7b2cf-0062-485c-8b11-c6434f3b40e5",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "d694392a-b673-4267-8925-3e4197fd2dbc"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 32695,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "89a27a3c-97e2-4580-80a4-bfe9887ae6de",
+      "title": "",
+      "fullFile": "cypress/integration/11.Filter.js",
+      "file": "cypress/integration/11.Filter.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "94e54063-f8b4-4445-add3-4e6e0cebead5",
+          "title": "Filter by label",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Filter by label",
+              "fullTitle": "Filter by label Filter by label",
+              "timedOut": null,
+              "duration": 41980,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//Collections Page\ncy.visit(url + '/collections/all');\n/*\ncy.get(selectors.wishlist_modal).eq(0).click()\ncy.get(\"body\").then($body => {\n    if ($body.find(selectors.list).length < 1) {\n        cy.get(selectors.close).click()\n        cy.add_to_wishlist(5)  \n    }\n});\ncy.get(selectors.getProduct).eq(2).click()\ncy.wait(2000)\ncy.get(selectors.wishlist).click()\ncy.wait(4000)\ncy.get('.swym-modal-content .swym-add-wishlist-container .swym-wishlist-options .swym-option-label').click()\ncy.get('.swym-results-container > button:nth-child(1)').click()\ncy.get(selectors.add_to_wishlist).click()\ncy.go('back')\n*/\ncy.get(_selectors.default.getProduct).eq(5).click();\ncy.wait(4000); //Clicking on the wishlist button in the PDP\ncy.get(_selectors.default.wishlist).click();\ncy.get(_selectors.default.add_to_wishlist).click();\ncy.go('back');\nlet name = \"new collections\";\ncy.get('.grid .grid__item > div > div >div:nth-child(3) .grid-link__title').eq(13).invoke('text').then(text1 => {\n  cy.get(_selectors.default.getProduct).eq(13).click();\n  cy.wait(2000);\n  cy.get(_selectors.default.wishlist).click(); // More waiting time bcoz it had many api's to fetch , \n  cy.wait(2000);\n  cy.get('.swym-modal-content .swym-add-wishlist-container .swym-wishlist-options .swym-option-label').click();\n  cy.get('.swym-label-input-container > input').type(name);\n  cy.get('.swym-new-label-container > button').click();\n  cy.get(_selectors.default.add_to_wishlist).click();\n  cy.wait(2000);\n  cy.go('back');\n  cy.get('.grid .grid__item > div > div >div:nth-child(3) .grid-link__title').eq(14).invoke('text').then(text2 => {\n    cy.get(_selectors.default.getProduct).eq(14).click();\n    cy.wait(2000);\n    cy.get(_selectors.default.wishlist).click();\n    cy.wait(2000);\n    cy.get('.swym-modal-content .swym-add-wishlist-container .swym-wishlist-options .swym-option-label').click();\n    cy.get('.swym-results-container .swym-label-name').contains(name).click();\n    cy.get(_selectors.default.add_to_wishlist).click();\n    cy.wait(2000);\n    cy.get(_selectors.default.wishlist_modal).eq(0).click({\n      force: true\n    });\n    cy.get(_selectors.default.my_wishlist).contains('My Wishlist').click();\n    cy.get('.swym-wishlist-detail-htc-user .swym-wishlist-detail-header .swym-primary-actions .swym-label-dropdown').click();\n    cy.get('.swym-results-container .swym-search-results-list > button .swym-label-name').contains(name).click();\n    cy.get('.swym-group-by-label .swym-group-by-label-name').should('have.text', name);\n    cy.wait(2000);\n    cy.get('.swym-group-by-label .swym-wishlist-grid > a').its('length').should('eq', 2);\n    cy.get('.swym-group-by-label .swym-wishlist-grid > a .swym-title').eq(0).should('have.text', text2);\n    cy.get('.swym-group-by-label .swym-wishlist-grid > a .swym-title').eq(1).should('have.text', text1);\n  });\n});",
+              "err": {},
+              "uuid": "cdf231b5-c32b-4790-a35c-67ba6694bda4",
+              "parentUUID": "94e54063-f8b4-4445-add3-4e6e0cebead5",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "cdf231b5-c32b-4790-a35c-67ba6694bda4"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 41980,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "6bf1aff3-f774-40b4-86a8-8ea4fa4f2c87",
+      "title": "",
+      "fullFile": "cypress/integration/12.Add_Collaborator.js",
+      "file": "cypress/integration/12.Add_Collaborator.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "1f297d2f-3ccc-4a94-8da4-a49d7af40f8c",
+          "title": "Adding a collaborator",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Add a Collobarator",
+              "fullTitle": "Adding a collaborator Add a Collobarator",
+              "timedOut": null,
+              "duration": 39500,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": null,
+              "code": "//COllectiosn Page\ncy.visit(url + '/collections/all');\n/*\ncy.get(selectors.wishlist_modal).eq(0).click({force:true})\ncy.get(\"body\").then($body => {\nif ($body.find(selectors.list).length < 1) {\n    cy.get(selectors.close).click()\n    cy.add_to_wishlist(5)  \n}\n});\n*/\ncy.get(_selectors.default.getProduct).eq(14).click();\ncy.wait(4000); //Clicking on the wishlist button in the PDP\ncy.get(_selectors.default.wishlist).click();\ncy.get(_selectors.default.add_to_wishlist).click();\ncy.wait(2000); //Adding Collaboratpr\ncy.get(_selectors.default.wishlist_modal).eq(0).click({\n  force: true\n});\ncy.wait(3000);\ncy.get(_selectors.default.list).eq(0).click();\ncy.get(_selectors.default.actions).click({\n  force: true\n});\nvar pid = \"\"; //RouteMatcher\ncy.window().then(win => {\n  pid = encodeURIComponent(win.swymJSObject.pid);\n  cy.intercept('/api/v3/lists/add-collaborator?pid=' + pid).as('AddCollaborator');\n  cy.get(_selectors.default.collaborator).contains('Add Collaborator').click();\n  cy.get(_selectors.default.collaborator_email).type('anjana.swathi@swymcorp.com');\n  cy.get(_selectors.default.add_collaborator).click(); //Checking whether it gave statuscode is 200 or not.\n  cy.wait('@AddCollaborator').then(intercept => {\n    expect(intercept.response.statusCode).to.equal(200);\n  });\n});",
+              "err": {
+                "message": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Add Collaborator' within the element: [ <button.swym-wishlist-context-menu-item.swym-duplicate.swym-nav.swym-nav-1.swym-is-button>, 1 more... ] but never did.",
+                "estack": "AssertionError: Timed out retrying after 4000ms: Expected to find content: 'Add Collaborator' within the element: [ <button.swym-wishlist-context-menu-item.swym-duplicate.swym-nav.swym-nav-1.swym-is-button>, 1 more... ] but never did.\n    at Context.eval (https://htc-demo-store.myshopify.com/__cypress/tests?p=cypress/integration/12.Add_Collaborator.js:174:47)",
+                "diff": null
+              },
+              "uuid": "c53ee138-78b1-4f47-9d0f-73601f7ebe6a",
+              "parentUUID": "1f297d2f-3ccc-4a94-8da4-a49d7af40f8c",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "c53ee138-78b1-4f47-9d0f-73601f7ebe6a"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 39500,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "98b16bca-7714-4b9a-993f-ed9f240650cf",
+      "title": "",
+      "fullFile": "cypress/integration/2.Changing_quantity.js",
+      "file": "cypress/integration/2.Changing_quantity.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "025439d5-f328-4c07-96c3-06ff7161e589",
+          "title": "Changing quantity before adding to wishlist",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Changing the quantity",
+              "fullTitle": "Changing quantity before adding to wishlist Changing the quantity",
+              "timedOut": null,
+              "duration": 20034,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//Collections page\ncy.visit(url + '/collections/all'); //Changing quantity before adding to the wishlist\ncy.get(_selectors.default.getProduct).eq(7).click();\ncy.get(_selectors.default.wishlist).click();\ncy.get(_selectors.default.add_quantity).eq(1).click();\ncy.get(_selectors.default.add_quantity).eq(1).click();\ncy.get(_selectors.default.quantity).should('have.text', '3');\ncy.get(_selectors.default.add_to_wishlist).click();\ncy.wait(5000);\ncy.get(_selectors.default.wishlist_modal).eq(0).click({\n  force: true\n}); // Opening the Wishlist Modal\ncy.get(_selectors.default.my_wishlist).contains('My Wishlist').click();\ncy.get(_selectors.default.product_in_list).click();\ncy.get(_selectors.default.quantity).should('have.text', '3'); //Closing the wishlist modal\ncy.get(_selectors.default.close).click();\ncy.go('back');",
+              "err": {},
+              "uuid": "2f32f8c1-cb1e-4138-b799-14a4111342ee",
+              "parentUUID": "025439d5-f328-4c07-96c3-06ff7161e589",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "2f32f8c1-cb1e-4138-b799-14a4111342ee"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 20034,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "55612b0b-418f-4c64-a1f2-20a90c751810",
+      "title": "",
+      "fullFile": "cypress/integration/3.Changing_variant.js",
+      "file": "cypress/integration/3.Changing_variant.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "d0c3ab5a-ee8e-457d-b177-59080ded23ae",
+          "title": "Changing the variant before adding to wishlist",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Changing the variant",
+              "fullTitle": "Changing the variant before adding to wishlist Changing the variant",
+              "timedOut": null,
+              "duration": 21386,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//Collections Page\ncy.visit(url + '/collections/all'); // Changing Variant before adding to list!\ncy.get(_selectors.default.getProduct).eq(6).click();\ncy.get(_selectors.default.wishlist).click();\ncy.get(_selectors.default.variant).select('M');\ncy.get(_selectors.default.add_to_wishlist).click();\ncy.wait(2000); //Checking whether it's rendered or not in the wishlist modal\ncy.get(_selectors.default.wishlist_modal).eq(0).click({\n  force: true\n});\ncy.wait(4000);\ncy.get(_selectors.default.my_wishlist).contains('My Wishlist').click();\ncy.get('.swym-wishlist-grid > a > div').eq(1).should('have.text', 'M'); //Closing the wishlist modal\ncy.get(_selectors.default.close).click();\ncy.go('back');",
+              "err": {},
+              "uuid": "7df99bc8-cf42-48cd-8527-c635fd04da39",
+              "parentUUID": "d0c3ab5a-ee8e-457d-b177-59080ded23ae",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "7df99bc8-cf42-48cd-8527-c635fd04da39"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 21386,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "518b1cec-8833-443f-bdea-7d79280014c4",
+      "title": "",
+      "fullFile": "cypress/integration/4.List_value.js",
+      "file": "cypress/integration/4.List_value.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "dac6238f-665e-442a-8906-fa6d4abdd107",
+          "title": "Checking the list value",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "List Value",
+              "fullTitle": "Checking the list value List Value",
+              "timedOut": null,
+              "duration": 29504,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//Collections Page\ncy.visit(url + '/collections/all');\n/*\ncy.get(selectors.wishlist_modal).eq(0).click({force:true})\ncy.wait(5000)\n\ncy.get(\"body\").then($body => {\n    if ($body.find(selectors.list).length < 1) {   \n        //evaluates as true\n        cy.get(selectors.close).click()\n        cy.get(selectors.wishlist_modal).eq(0).click({force:true})\n        cy.add_to_wishlist(5)\n        cy.go('back')\n        cy.add_to_wishlist(6)\n    \n    }\n    else{\n        cy.get(selectors.list).eq(0).click()\n            cy.get(selectors.product_in_list).then((c)=>{\n                if(c < 1){\n                    add_to_wishlist(5)\n                }\n            })\n         }\n});\n*/\n//Adding some products to wishlist modal to check the list value\ncy.get(_selectors.default.getProduct).eq(5).click();\ncy.get(_selectors.default.wishlist).click();\ncy.get(_selectors.default.add_to_wishlist).click();\ncy.wait(2000);\ncy.go('back');\ncy.get(_selectors.default.getProduct).eq(6).click();\ncy.get(_selectors.default.wishlist).click();\ncy.get(_selectors.default.add_to_wishlist).click();\ncy.wait(2000); //Opening the wishlist modal\ncy.get(_selectors.default.wishlist_modal).eq(0).click({\n  force: true\n});\ncy.wait(2000);\ncy.get(_selectors.default.list).eq(0).click();\ncy.wait(2000); //Initializing the listValue by 0.\nlet listValue = 0; //Going to every product in the specific list and add the price to listValue\ncy.get(_selectors.default.product_in_list).its('length').then(last => {\n  cy.get(_selectors.default.product_in_list).each((a, index) => {\n    cy.get(_selectors.default.product_in_list).eq(index).click({\n      force: true\n    });\n    cy.wait(1000); //Taking quantity and price of every product\n    cy.get('.swym-wishlist-quantity-select .swym-product-quantity > div').eq(index).invoke('text').then(c => {\n      cy.get('.swym-product-price .swym-product-final-price').eq(index).invoke('text').then(text => {\n        let price = Number(text.slice(1));\n        listValue = listValue + Number(c) * price;\n        cy.log('listValue', listValue);\n      });\n    }).as('wish');\n    cy.get('@wish').then(inter => {\n      cy.log('listvalue', listValue);\n      if (last == index + 1) {\n        cy.log('last', listValue);\n        cy.get(_selectors.default.total_list_value).should('have.text', `$${listValue}.00`);\n      }\n    });\n    cy.get(_selectors.default.back_btn).click();\n  });\n}); //Closing the wishlist modal\ncy.get(_selectors.default.close).click();\ncy.go('back');",
+              "err": {},
+              "uuid": "b4a02ce0-82bb-48ea-8324-b813b00bd659",
+              "parentUUID": "dac6238f-665e-442a-8906-fa6d4abdd107",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "b4a02ce0-82bb-48ea-8324-b813b00bd659"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 29504,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "e847bdd6-a327-40b7-8a9d-4f27d3e11cca",
+      "title": "",
+      "fullFile": "cypress/integration/5.Note.js",
+      "file": "cypress/integration/5.Note.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "153ecc4a-f3df-4f5a-b344-ef7402d3c2e4",
+          "title": "Note",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "check",
+              "fullTitle": "Note check",
+              "timedOut": null,
+              "duration": 5089,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var pid = \"\"; //RouteMatcher\ncy.window().then(win => {\n  pid = encodeURIComponent(win.swymJSObject.pid);\n  cy.log(pid);\n  console.log(pid);\n});",
+              "err": {},
+              "uuid": "aeee01b2-d035-451e-80a9-f72e6ee68970",
+              "parentUUID": "153ecc4a-f3df-4f5a-b344-ef7402d3c2e4",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Adding a note and Changing an existing note",
+              "fullTitle": "Note Adding a note and Changing an existing note",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "505097ad-6584-43f9-ac78-c84f20bebb8a",
+              "parentUUID": "153ecc4a-f3df-4f5a-b344-ef7402d3c2e4",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "aeee01b2-d035-451e-80a9-f72e6ee68970"
+          ],
+          "failures": [],
+          "pending": [
+            "505097ad-6584-43f9-ac78-c84f20bebb8a"
+          ],
+          "skipped": [],
+          "duration": 5089,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "e9a90dfc-2d31-412c-9ec3-537bc9ff81aa",
+      "title": "",
+      "fullFile": "cypress/integration/6.Share_List.js",
+      "file": "cypress/integration/6.Share_List.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "483148a5-cc8b-4ddc-860d-6b00ba553f99",
+          "title": "Sharing list",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Sharing List",
+              "fullTitle": "Sharing list Sharing List",
+              "timedOut": null,
+              "duration": 72127,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//Collections Page\ncy.visit(url + '/collections/all');\n/*\ncy.get(selectors.wishlist_modal).eq(0).click({force:true})\ncy.get(\"body\").then($body => {\n    if ($body.find(selectors.list).length < 1) {\n        cy.get(selectors.close).click()\n        cy.add_to_wishlist(8)  \n    }\n});*/\ncy.get(_selectors.default.getProduct).eq(9).click();\ncy.get(_selectors.default.wishlist).click();\ncy.get(_selectors.default.add_to_wishlist).click();\ncy.wait(2000);\ncy.go('back');\ncy.wait(2000);\ncy.get(_selectors.default.wishlist_modal).eq(0).click({\n  force: true\n});\ncy.wait(3000);\ncy.get(_selectors.default.list).eq(0).click();\ncy.wait(3000); //Sharing the list\ncy.get(_selectors.default.share_list).click();\nvar pid = \"\"; //RouteMatcher using intercepts\ncy.window().then(win => {\n  pid = encodeURIComponent(win.swymJSObject.pid);\n  cy.intercept('/api/v3/lists/emailList?pid=' + pid).as('CheckShare');\n  cy.get('#swym-email').type('awesomeqqq12345@gmail.com');\n  cy.get(_selectors.default.share).click();\n  cy.wait(2000); //Checking whether it gave statuscode is 200 or not.\n  cy.wait('@CheckShare').then(intercept => {\n    expect(intercept.response.statusCode).to.equal(200);\n  });\n});",
+              "err": {},
+              "uuid": "925723aa-bcd0-4fcf-80b8-6c0bc2dfaa94",
+              "parentUUID": "483148a5-cc8b-4ddc-860d-6b00ba553f99",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "925723aa-bcd0-4fcf-80b8-6c0bc2dfaa94"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 72127,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "65901ff1-8dd2-4360-bba1-cee4564d8d08",
+      "title": "",
+      "fullFile": "cypress/integration/7.Delete_List.js",
+      "file": "cypress/integration/7.Delete_List.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "e1918450-1548-499c-9065-6e5152c9342b",
+          "title": "Deleting list",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Delete a list",
+              "fullTitle": "Deleting list Delete a list",
+              "timedOut": null,
+              "duration": 20049,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//Collections Page\ncy.visit(url + '/collections/all');\n/*\ncy.get(selectors.wishlist_modal).eq(0).click({force:true})\ncy.get(\"body\").then($body => {\n if ($body.find(selectors.list).length < 1) {\n     cy.get(selectors.close).click()\n     cy.add_to_wishlist(10)  \n }\n });*/\ncy.get(_selectors.default.getProduct).eq(10).click();\ncy.get(_selectors.default.wishlist).click();\ncy.get(_selectors.default.add_to_wishlist).click();\ncy.wait(2000);\ncy.go('back'); //Wishlist Modal\ncy.get(_selectors.default.wishlist_modal).eq(0).click({\n  force: true\n});\ncy.wait(1000);\ncy.get(_selectors.default.list).eq(0).click();\ncy.get(_selectors.default.actions).click({\n  force: true\n}); //Deleting the list\ncy.get('.swym-wishlist-context-menu-content > button').contains('Delete List').click();\ncy.get('.swym-clear-wishlist-modal-dialog > button').eq(0).click();\ncy.get('.swym-wishlist-container-content-htc-user > div').should('have.class', 'swym-empty-wishlist-container');",
+              "err": {},
+              "uuid": "5550ae1a-f0bb-44c0-8cf7-ead6584ec658",
+              "parentUUID": "e1918450-1548-499c-9065-6e5152c9342b",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "5550ae1a-f0bb-44c0-8cf7-ead6584ec658"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 20049,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "39a92c66-2712-4391-8e89-2e24d22c573e",
+      "title": "",
+      "fullFile": "cypress/integration/8.Duplicate_List.js",
+      "file": "cypress/integration/8.Duplicate_List.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "0184c558-cd2e-4de9-b285-80b4c801e4d4",
+          "title": "Duplicating list",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Duplicate a list",
+              "fullTitle": "Duplicating list Duplicate a list",
+              "timedOut": null,
+              "duration": 23143,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//Collections Page\ncy.visit(url + '/collections/all');\n/*\ncy.get(selectors.wishlist_modal).eq(0).click({force:true})\ncy.get(\"body\").then($body => {\n if ($body.find(selectors.list).length < 1) {\n     cy.get(selectors.close).click()\n     cy.add_to_wishlist(10)  \n }\n});\n*/\ncy.get('.grid .grid__item > div > div >div:nth-child(3) .grid-link__title').eq(11).invoke('text').then(text => {\n  cy.get(_selectors.default.getProduct).eq(11).click();\n  cy.get(_selectors.default.wishlist).click();\n  cy.get(_selectors.default.add_to_wishlist).click();\n  cy.wait(2000);\n  cy.get(_selectors.default.wishlist_modal).eq(0).click({\n    force: true\n  });\n  cy.wait(1000);\n  cy.get(_selectors.default.list).eq(0).click({\n    force: true\n  });\n  cy.get(_selectors.default.actions).click({\n    force: true\n  }); //Duplicating a list\n  cy.get('.swym-wishlist-context-menu-content > button').contains('Duplicate List').click();\n  cy.get('.swym-duplicate-wishlist-button-container .swym-duplicate-wishlist-btn').click();\n  cy.wait(2000);\n  cy.get(_selectors.default.my_wishlist).contains('My Wishlist Copy').click();\n  cy.get(_selectors.default.title).should('have.text', text);\n  cy.get(_selectors.default.close).click();\n  cy.go('back');\n});",
+              "err": {},
+              "uuid": "7ed0a557-b872-4369-a3b4-d74971cadf92",
+              "parentUUID": "0184c558-cd2e-4de9-b285-80b4c801e4d4",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "7ed0a557-b872-4369-a3b4-d74971cadf92"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 23143,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    },
+    {
+      "uuid": "e6167cf1-6166-4aac-842e-6e1972cbae3b",
+      "title": "",
+      "fullFile": "cypress/integration/9.Add_to_Cart.js",
+      "file": "cypress/integration/9.Add_to_Cart.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "44dbbe98-ec4b-4f46-96d3-0c1b28ef798e",
+          "title": "Add item to cart",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Adding an item to the cart",
+              "fullTitle": "Add item to cart Adding an item to the cart",
+              "timedOut": null,
+              "duration": 30387,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.visit(url + '/collections/all');\n/*\ncy.get(selectors.wishlist_modal).eq(0).click({force:true})\ncy.get(\"body\").then($body => {\n if ($body.find(selectors.list).length < 1) {\n     cy.get(selectors.close).click()\n     cy.add_to_wishlist(11)  \n }\n});\n*/\ncy.get(_selectors.default.getProduct).eq(13).click();\ncy.get(_selectors.default.wishlist).click();\ncy.get(_selectors.default.add_to_wishlist).click();\ncy.wait(2000); //Add to cart\ncy.get(_selectors.default.wishlist_modal).eq(0).click({\n  force: true\n});\ncy.wait(1000);\ncy.get(_selectors.default.list).eq(0).click();\ncy.get(_selectors.default.product_in_list).eq(0).click();\ncy.wait(2000);\ncy.get('.swym-wishlist-product-detail-container .swym-wishlist-product-detail-text-container-inner > h3').then(tit => {\n  let title = tit.text();\n  cy.get('.swym-wishlist-product-detail-container .swym-wishlist-product-detail-text-container-inner .swym-product-final-price').then(q => {\n    let quantity = q.text();\n    cy.get(_selectors.default.add_to_cart).eq(0).click();\n    cy.wait(2000);\n    cy.log('title', title);\n    cy.log('quantity', quantity);\n    cy.get(_selectors.default.close).click();\n    cy.get('.header-bar__module .cart-page-link').eq(0).click();\n    cy.get('.wrapper.main-content >div #CartSection');\n    cy.get('.grid__item.two-thirds > a').eq(0).contains(title);\n    cy.wait(5000);\n    cy.get('.cart__row .grid__item:nth-child(2) > div input[type=\"number\"]').should('have.value', '1');\n  });\n}); //cy.get('.swym-modal-content .swym-close-btn > a').click()\n//cy.go('back')",
+              "err": {},
+              "uuid": "d9f2d513-240d-46e6-92b5-af0e471b3895",
+              "parentUUID": "44dbbe98-ec4b-4f46-96d3-0c1b28ef798e",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Adding all item to the cart",
+              "fullTitle": "Add item to cart Adding all item to the cart",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "be45f93c-b27d-4865-bb62-073490ba9c91",
+              "parentUUID": "44dbbe98-ec4b-4f46-96d3-0c1b28ef798e",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "d9f2d513-240d-46e6-92b5-af0e471b3895"
+          ],
+          "failures": [],
+          "pending": [
+            "be45f93c-b27d-4865-bb62-073490ba9c91"
+          ],
+          "skipped": [],
+          "duration": 30387,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mocha",
+        "quite": true,
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

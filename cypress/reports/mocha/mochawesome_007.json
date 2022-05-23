@@ -1,0 +1,127 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 2,
+    "passes": 1,
+    "pending": 1,
+    "failures": 0,
+    "start": "2022-05-23T06:02:17.058Z",
+    "end": "2022-05-23T06:02:25.405Z",
+    "duration": 8347,
+    "testsRegistered": 2,
+    "passPercent": 100,
+    "pendingPercent": 50,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "e847bdd6-a327-40b7-8a9d-4f27d3e11cca",
+      "title": "",
+      "fullFile": "cypress/integration/5.Note.js",
+      "file": "cypress/integration/5.Note.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "153ecc4a-f3df-4f5a-b344-ef7402d3c2e4",
+          "title": "Note",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "check",
+              "fullTitle": "Note check",
+              "timedOut": null,
+              "duration": 5089,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var pid = \"\"; //RouteMatcher\ncy.window().then(win => {\n  pid = encodeURIComponent(win.swymJSObject.pid);\n  cy.log(pid);\n  console.log(pid);\n});",
+              "err": {},
+              "uuid": "aeee01b2-d035-451e-80a9-f72e6ee68970",
+              "parentUUID": "153ecc4a-f3df-4f5a-b344-ef7402d3c2e4",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Adding a note and Changing an existing note",
+              "fullTitle": "Note Adding a note and Changing an existing note",
+              "timedOut": null,
+              "duration": 0,
+              "state": "pending",
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": true,
+              "context": null,
+              "code": "",
+              "err": {},
+              "uuid": "505097ad-6584-43f9-ac78-c84f20bebb8a",
+              "parentUUID": "153ecc4a-f3df-4f5a-b344-ef7402d3c2e4",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "aeee01b2-d035-451e-80a9-f72e6ee68970"
+          ],
+          "failures": [],
+          "pending": [
+            "505097ad-6584-43f9-ac78-c84f20bebb8a"
+          ],
+          "skipped": [],
+          "duration": 5089,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mocha",
+        "quite": true,
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

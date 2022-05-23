@@ -1,0 +1,164 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 4,
+    "passes": 4,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-05-23T05:56:07.892Z",
+    "end": "2022-05-23T05:57:30.387Z",
+    "duration": 82495,
+    "testsRegistered": 4,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "f3e6ba15-4038-4372-a583-13907a85e48f",
+      "title": "",
+      "fullFile": "cypress/integration/1.Add_To_Wishlist.js",
+      "file": "cypress/integration/1.Add_To_Wishlist.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "ded45ce9-4b4d-4c45-a0ec-7b685dda0655",
+          "title": "Adding to Wishlist",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Checking if wishlist launch point is there",
+              "fullTitle": "Adding to Wishlist Checking if wishlist launch point is there",
+              "timedOut": null,
+              "duration": 7647,
+              "state": "passed",
+              "speed": "medium",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "cy.wait(3000);\ncy.get(_selectors.default.wishlist_modal).eq(0).should('be.visible');",
+              "err": {},
+              "uuid": "80a8b3df-5676-4452-93ba-add2d7cbf63d",
+              "parentUUID": "ded45ce9-4b4d-4c45-a0ec-7b685dda0655",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Add to single wishlist",
+              "fullTitle": "Adding to Wishlist Add to single wishlist",
+              "timedOut": null,
+              "duration": 19555,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//Going to the collections page\ncy.visit(url + '/collections/all');\ncy.get('.grid .grid__item > div > div >div:nth-child(3) .grid-link__title').eq(0).invoke('text').then(text => {\n  // Product details page of a specific product\n  cy.get(_selectors.default.getProduct).eq(0).click();\n  cy.wait(4000); //Clicking on the wishlist button in the PDP\n  cy.get(_selectors.default.wishlist).click();\n  cy.get(_selectors.default.add_to_wishlist).click();\n  cy.wait(3000); //Opening the Wishlist Modal\n  cy.get(_selectors.default.wishlist_modal).eq(0).click({\n    force: true\n  }); //Opening the \"My Wishlist\"(default) list.\n  cy.get(_selectors.default.my_wishlist).contains('My Wishlist').click({\n    force: true\n  });\n  cy.wait(3000);\n  cy.get(_selectors.default.title).should('have.text', text); // Closing the Wishlist Modal\n  cy.get(_selectors.default.close).click();\n  cy.go('back');\n});",
+              "err": {},
+              "uuid": "b2de92ff-7831-4163-8e72-8d3472d4fcf0",
+              "parentUUID": "ded45ce9-4b4d-4c45-a0ec-7b685dda0655",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Creating new List and using the existing list",
+              "fullTitle": "Adding to Wishlist Creating new List and using the existing list",
+              "timedOut": null,
+              "duration": 24464,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//Going to collections page\ncy.visit(url + '/collections/all'); //Creating new list and adding\nconst name = \"New trends\";\ncy.get('.grid .grid__item > div > div >div:nth-child(3) .grid-link__title').eq(1).invoke('text').then(text => {\n  // Product details page of a specific product\n  cy.get(_selectors.default.getProduct).eq(1).click();\n  cy.get(_selectors.default.wishlist).click();\n  cy.get(_selectors.default.new_list).clear().type(name).type('{enter}');\n  cy.get(_selectors.default.add_to_wishlist).click();\n  cy.wait(2000);\n  cy.get(_selectors.default.wishlist_modal).eq(0).click({\n    force: true\n  });\n  cy.get(_selectors.default.list_name).should('have.text', name).click();\n  cy.get(_selectors.default.close).click();\n  cy.go('back');\n}); //Adding to the Existing list\ncy.get('.grid .grid__item > div > div >div:nth-child(3) .grid-link__title').eq(2).invoke('text').then(text => {\n  cy.get(_selectors.default.getProduct).eq(2).click();\n  cy.get(_selectors.default.wishlist).click();\n  cy.wait(2000);\n  cy.get('.swym-wishlist-options .swym-wishlist-select-dropdown .swym-display-list').click();\n  cy.wait(2000);\n  cy.get('.swym-wishlist-dropdown-content-container > div .swym-results-container > button').eq(0).click();\n  cy.get(_selectors.default.add_to_wishlist).click();\n  cy.wait(2000); //Clicking on the wishlist modal\n  cy.get(_selectors.default.wishlist_modal).eq(0).click({\n    force: true\n  });\n  cy.get(_selectors.default.my_wishlist).contains(name).click();\n  cy.wait(3000);\n  cy.get(_selectors.default.title).contains(text); //Closing the list modal\n  cy.get(_selectors.default.close).click();\n  cy.go('back');\n});",
+              "err": {},
+              "uuid": "6430f502-8a04-46ca-b7bf-a4342e4fe1f4",
+              "parentUUID": "ded45ce9-4b4d-4c45-a0ec-7b685dda0655",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "Add to existing label and create new label",
+              "fullTitle": "Adding to Wishlist Add to existing label and create new label",
+              "timedOut": null,
+              "duration": 25224,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//Collections Page\ncy.visit(url + '/collections/all'); //Adding to the existing label\ncy.get('.grid .grid__item > div > div >div:nth-child(3) .grid-link__title').eq(3).invoke('text').then(text => {\n  cy.get(_selectors.default.getProduct).eq(3).click();\n  cy.wait(2000);\n  cy.get(_selectors.default.wishlist).click();\n  cy.wait(2000);\n  cy.get('.swym-modal-content .swym-add-wishlist-container .swym-wishlist-options .swym-option-label').click();\n  cy.get('.swym-results-container > button:nth-child(1)').click();\n  cy.get(_selectors.default.add_to_wishlist).click();\n  cy.wait(2000);\n  cy.get(_selectors.default.wishlist_modal).eq(0).click({\n    force: true\n  });\n  cy.get(_selectors.default.my_wishlist).contains('My Wishlist').click();\n  cy.get(_selectors.default.label_name).contains('Label 1');\n  cy.get(_selectors.default.title).should('have.text', text);\n}); // closing the list modal\ncy.get(_selectors.default.close).click();\ncy.go('back'); //Creating a new label\ncy.visit(url + '/collections/all');\nlet label = 'Fan';\ncy.get('.grid .grid__item > div > div >div:nth-child(3) .grid-link__title').eq(4).invoke('text').then(text => {\n  cy.get(_selectors.default.getProduct).eq(4).click();\n  cy.wait(2000);\n  cy.get(_selectors.default.wishlist).click();\n  cy.wait(2000);\n  cy.get('.swym-modal-content .swym-add-wishlist-container .swym-wishlist-options .swym-option-label').click();\n  cy.get('.swym-label-input-container > input').type(label);\n  cy.get('.swym-new-label-container > button').click(); // Clicking on the wishlist button\n  cy.get(_selectors.default.add_to_wishlist).click();\n  cy.wait(2000);\n  cy.get(_selectors.default.wishlist_modal).eq(0).click({\n    force: true\n  });\n  cy.get(_selectors.default.my_wishlist).contains('My Wishlist').click();\n  cy.get('.swym-group-by-label .swym-group-by-label-name').contains(label);\n  cy.get(_selectors.default.title).eq(0).should('have.text', text);\n}); // closing the list modal\ncy.get(_selectors.default.close).click();\ncy.go('back');",
+              "err": {},
+              "uuid": "ea6c9ae3-2184-462c-b595-e15e25250c74",
+              "parentUUID": "ded45ce9-4b4d-4c45-a0ec-7b685dda0655",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "80a8b3df-5676-4452-93ba-add2d7cbf63d",
+            "b2de92ff-7831-4163-8e72-8d3472d4fcf0",
+            "6430f502-8a04-46ca-b7bf-a4342e4fe1f4",
+            "ea6c9ae3-2184-462c-b595-e15e25250c74"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 76890,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mocha",
+        "quite": true,
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}

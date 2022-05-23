@@ -1,0 +1,107 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2022-05-23T06:01:01.253Z",
+    "end": "2022-05-23T06:01:25.835Z",
+    "duration": 24582,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "55612b0b-418f-4c64-a1f2-20a90c751810",
+      "title": "",
+      "fullFile": "cypress/integration/3.Changing_variant.js",
+      "file": "cypress/integration/3.Changing_variant.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "d0c3ab5a-ee8e-457d-b177-59080ded23ae",
+          "title": "Changing the variant before adding to wishlist",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "Changing the variant",
+              "fullTitle": "Changing the variant before adding to wishlist Changing the variant",
+              "timedOut": null,
+              "duration": 21386,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "//Collections Page\ncy.visit(url + '/collections/all'); // Changing Variant before adding to list!\ncy.get(_selectors.default.getProduct).eq(6).click();\ncy.get(_selectors.default.wishlist).click();\ncy.get(_selectors.default.variant).select('M');\ncy.get(_selectors.default.add_to_wishlist).click();\ncy.wait(2000); //Checking whether it's rendered or not in the wishlist modal\ncy.get(_selectors.default.wishlist_modal).eq(0).click({\n  force: true\n});\ncy.wait(4000);\ncy.get(_selectors.default.my_wishlist).contains('My Wishlist').click();\ncy.get('.swym-wishlist-grid > a > div').eq(1).should('have.text', 'M'); //Closing the wishlist modal\ncy.get(_selectors.default.close).click();\ncy.go('back');",
+              "err": {},
+              "uuid": "7df99bc8-cf42-48cd-8527-c635fd04da39",
+              "parentUUID": "d0c3ab5a-ee8e-457d-b177-59080ded23ae",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "7df99bc8-cf42-48cd-8527-c635fd04da39"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 21386,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": false,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": {
+        "id": "default",
+        "reportDir": "cypress/reports/mocha",
+        "quite": true,
+        "overwrite": false,
+        "html": false,
+        "json": true
+      },
+      "version": "6.2.0"
+    }
+  }
+}
